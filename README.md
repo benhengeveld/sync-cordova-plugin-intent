@@ -1,39 +1,47 @@
-*Please be aware that this application / sample is provided as-is for demonstration purposes without any guarantee of support*
-=========================================================
+# _Please be aware that this application / sample is provided as-is for demonstration purposes without any guarantee of support_
 
 # Android X support
+
 - For Android X Support please use version >= 2.x.x
 - For Android Support Library please use version 1.3.x
 
 # Interaction with Camera Plugin
+
 If you are installing this plugin along with cordova-plugin-camera you **MUST install cordova-plugin-camera first.**
 
 # Overview
+
 This Cordova plugin provides a general purpose shim layer for the Android intent mechanism, exposing various ways to handle sending and receiving intents.
 
 ## Credits
+
 This project uses code released under the following MIT projects:
+
 - https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent (marked as no archived)
 - https://github.com/napolitano/cordova-plugin-intent (marked as no longer maintained)
 - https://github.com/Initsogar/cordova-webintent.git (no longer available on github but the project is forked here: https://github.com/darryncampbell/cordova-webintent)
-This project is also released under MIT.  Credit is given in the code where appropriate
+  This project is also released under MIT. Credit is given in the code where appropriate
 
 ## IntentShim
+
 This plugin defines a `window.plugins.intentShim` object which provides an API for interacting with the Android intent mechanism on any Android device.
 
 ## Testing / Example
+
 An example application is available at https://github.com/darryncampbell/plugin-intent-api-exerciser to demonstrate the API and can be used to test the functionality.
 
 ## Installation
 
 ### Cordova Version
+
     cordova plugin add https://github.com/benhengeveld/sync-cordova-plugin-intent.git
 
 ## Use with PhoneGap
 
-Please use the latest PhoneGap cli when including this plugin, please refer to [Issue 63](https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent/issues/63) for context. 
+Please use the latest PhoneGap cli when including this plugin, please refer to [Issue 63](https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent/issues/63) for context.
 
 ## Supported Platforms
+
 - Android
 
 ## intentShim.registerBroadcastReceiver
@@ -52,15 +60,14 @@ Register a broadcast receiver for two filters:
 
     window.plugins.intentShim.registerBroadcastReceiver({
         filterActions: [
-            'com.darryncampbell.cordova.plugin.broadcastIntent.ACTION',
-            'com.darryncampbell.cordova.plugin.broadcastIntent.ACTION_2'
+            'com.sync.cordova.plugin.broadcastIntent.ACTION',
+            'com.sync.cordova.plugin.broadcastIntent.ACTION_2'
             ]
         },
         function(intent) {
             console.log('Received broadcast intent: ' + JSON.stringify(intent.extras));
         }
     );
-
 
 ## intentShim.unregisterBroadcastReceiver
 
@@ -70,7 +77,7 @@ Unregisters any BroadcastRecivers
 
 ### Description
 
-The `intentShim.unregisterBroadcastReceiver` function unregisters all broadcast receivers registered with `intentShim.registerBroadcastReceiver(filters, callback);`.  No further broadcasts will be received for any registered filter after this call.
+The `intentShim.unregisterBroadcastReceiver` function unregisters all broadcast receivers registered with `intentShim.registerBroadcastReceiver(filters, callback);`. No further broadcasts will be received for any registered filter after this call.
 
 ### Android Quirks
 
@@ -104,7 +111,7 @@ Send a broadcast intent to a specified action that contains a random number in t
 
     window.plugins.intentShim.startActivity(
         {
-            action: "com.darryncampbell.cordova.plugin.intent.ACTION",
+            action: "com.sync.cordova.plugin.intent.ACTION",
             extras: {
                     'random.number': Math.floor((Math.random() * 1000) + 1)
             }
@@ -112,7 +119,6 @@ Send a broadcast intent to a specified action that contains a random number in t
         function() {},
         function() {alert('Failed to open URL via Android Intent')}
     );
-
 
 ## intentShim.onIntent
 
@@ -122,16 +128,17 @@ Returns the content of the intent used whenever the application activity is laun
 
 ### Description
 
-The `intentShim.onIntent` function returns the intent which launched the Activity and maps to the Android Activity's onNewIntent() method, https://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent).  The registered callback is invoked whenever the activity is launched
+The `intentShim.onIntent` function returns the intent which launched the Activity and maps to the Android Activity's onNewIntent() method, https://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent). The registered callback is invoked whenever the activity is launched
 
 ### Android Quirks
 
-By default the android application will be created with launch mode set to 'SingleTop'.  If you wish to change this to 'SingleTask' you can do so by modifying `config.xml` as follows:
+By default the android application will be created with launch mode set to 'SingleTop'. If you wish to change this to 'SingleTask' you can do so by modifying `config.xml` as follows:
 
     <platform name="android">
         ...
         <preference name="AndroidLaunchMode" value="singleTask"/>
     </platform>
+
 See https://www.mobomo.com/2011/06/android-understanding-activity-launchmode/ for more information on the differences between the two.
 
 ### Example
@@ -206,7 +213,6 @@ The `intentShim.getIntent` function maps to Android's activity method getIntent,
             console.log('Error getting launch intent');
         });
 
-
 ## intentShim.startActivityForResult
 
 Starts a new activity and return the result to the application
@@ -271,11 +277,12 @@ Both `args` and `callback` arguments have to be provided. If you do not need the
             }
         },
         function() {
-        
+
         }
     );
 
 ## intentShim.packageExists
+
 Returns a boolean indicating if a specific package is installed on the device.
 
 ```js
@@ -287,21 +294,23 @@ window.plugins.intentShim.packageExists(packageName, callback);
 The `intentShim.packageExists` function returns a boolean indicating if a specific [package](https://developer.android.com/studio/build/configure-app-module#set_the_application_id) is installed on the current device.
 
 ### Example
+
 ```js
-const packageName = 'com.android.contacts';
+const packageName = "com.android.contacts";
 
 window.plugins.intentShim.packageExists(packageName, (exists) => {
-    if (exists) {
-        console.log(`${packageName} exists!`);
-    } else {
-        console.log(`${packageName} does not exist...`);
-    }
+  if (exists) {
+    console.log(`${packageName} exists!`);
+  } else {
+    console.log(`${packageName} does not exist...`);
+  }
 });
 ```
 
 ## Predefined Constants
 
 The following constants are defined in the plugin for use in JavaScript
+
 - window.plugins.intentShim.ACTION_SEND
 - window.plugins.intentShim.ACTION_VIEW
 - window.plugins.intentShim.EXTRA_TEXT
@@ -316,6 +325,3 @@ The following constants are defined in the plugin for use in JavaScript
 ## Tested Versions
 
 Tested with Cordova version 6.5.0 and Cordova Android version 6.2.1
-
-
-
