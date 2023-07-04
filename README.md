@@ -17,7 +17,7 @@ This Cordova plugin provides a general purpose shim layer for the Android intent
 
 This project uses code released under the following MIT projects:
 
-- https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent (marked as no archived)
+- https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent (marked as archived)
 - https://github.com/napolitano/cordova-plugin-intent (marked as no longer maintained)
 - https://github.com/Initsogar/cordova-webintent.git (no longer available on github but the project is forked here: https://github.com/darryncampbell/cordova-webintent)
   This project is also released under MIT. Credit is given in the code where appropriate
