@@ -32,7 +32,7 @@ An example application is available at https://github.com/darryncampbell/plugin-
 
 ## Cordova Installation
 
-    cordova plugin add https://github.com/benhengeveld/sync-cordova-plugin-intent.git
+    cordova plugin add github:benhengeveld/sync-cordova-plugin-intent
 
 ## Use with PhoneGap
 
