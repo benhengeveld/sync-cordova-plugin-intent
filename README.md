@@ -30,9 +30,7 @@ This plugin defines a `window.plugins.intentShim` object which provides an API f
 
 An example application is available at https://github.com/darryncampbell/plugin-intent-api-exerciser to demonstrate the API and can be used to test the functionality.
 
-## Installation
-
-### Cordova Version
+## Cordova Installation
 
     cordova plugin add https://github.com/benhengeveld/sync-cordova-plugin-intent.git
 
